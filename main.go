@@ -10,7 +10,12 @@ func main() {
 
 	v1 := router.Group("/v1")
 	{
+		// nil を返すためエラーになる
 		v1.GET("/user", hello.Hello())
+		// うまくいく
+		v1.GET("/hello", func(ctx *gin.Context) {
+			ctx.String(200, "Hello World")
+		})
 	}
 
 	router.Run(":9000")
